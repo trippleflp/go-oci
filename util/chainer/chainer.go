@@ -19,12 +19,14 @@ func BuildChainerWithError[T interface{}](err error) Chainer[T] {
 	}
 }
 
-func (c *Chainer[T]) Fail(err error) {
+func (c *Chainer[T]) Fail(err error) *Chainer[T] {
 	c.err = err
+	return c
 }
 
-func (c *Chainer[T]) Update(element *T) {
+func (c *Chainer[T]) Update(element *T) *Chainer[T] {
 	c.element = element
+	return c
 }
 
 func (c *Chainer[T]) Ok() bool {
